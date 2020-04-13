@@ -1,0 +1,16 @@
+libgeometry
+
+Libgeometry is a computational geometry library built with graphics
+and simulators in mind.
+
+It isn't yet finished, but it already provides some nice fundamental
+blocks with which to build more complex processors.  It also is an
+improvement over the stock libgeometry shipping with plan9(front).
+
+To use it: mk install it and include the geometry.h from your
+projects, then link against the generated libgeometry.a$O.
+
+You can find the documentation in doc/, although it doesn't document
+the whole API at the moment.  Points (of which are also vectors),
+Matrices and Quaternions are mostly complete.  When in doubt, read
+the code.
