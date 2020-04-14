@@ -17,13 +17,13 @@ Quatvec(double s, Point3 v)
 Quaternion
 addq(Quaternion a, Quaternion b)
 {
-	return (Quaternion){a.r+b.r, a.i+b.i, a.j+b.j, a.k+b.k};
+	return Quat(a.r+b.r, a.i+b.i, a.j+b.j, a.k+b.k);
 }
 
 Quaternion
 subq(Quaternion a, Quaternion b)
 {
-	return (Quaternion){a.r-b.r, a.i-b.i, a.j-b.j, a.k-b.k};
+	return Quat(a.r-b.r, a.i-b.i, a.j-b.j, a.k-b.k);
 }
 
 Quaternion
@@ -34,19 +34,19 @@ mulq(Quaternion q, Quaternion r)
 	qv = Vec3(q.i, q.j, q.k);
 	rv = Vec3(r.i, r.j, r.k);
 	tmp = addpt3(addpt3(mulpt3(rv, q.r), mulpt3(qv, r.r)), crossvec3(qv, rv));
-	return (Quaternion){q.r*r.r - dotvec3(qv, rv), tmp.x, tmp.y, tmp.z};
+	return Quatvec(q.r*r.r - dotvec3(qv, rv), tmp);
 }
 
 Quaternion
 smulq(Quaternion q, double s)
 {
-	return (Quaternion){q.r*s, q.i*s, q.j*s, q.k*s};
+	return Quat(q.r*s, q.i*s, q.j*s, q.k*s);
 }
 
 Quaternion
 sdivq(Quaternion q, double s)
 {
-	return (Quaternion){q.r/s, q.i/s, q.j/s, q.k/s};
+	return Quat(q.r/s, q.i/s, q.j/s, q.k/s);
 }
 
 double
@@ -62,14 +62,14 @@ invq(Quaternion q)
 
 	len² = dotq(q, q);
 	if(len² == 0)
-		return (Quaternion){0, 0, 0, 0};
-	return (Quaternion){q.r/len², -q.i/len², -q.j/len², -q.k/len²};
+		return Quat(0,0,0,0);
+	return Quat(q.r/len², -q.i/len², -q.j/len², -q.k/len²);
 }
 
 double
 qlen(Quaternion q)
 {
-	return sqrt(q.r*q.r + q.i*q.i + q.j*q.j + q.k*q.k);
+	return sqrt(dotq(q, q));
 }
 
 Quaternion
@@ -79,12 +79,12 @@ normq(Quaternion q)
 }
 
 Point3
-qrotate(Point3 p, Point3 axis, double angle)
+qrotate(Point3 p, Point3 axis, double θ)
 {
 	Quaternion qaxis, qr;
 
-	angle /= 2;
-	qaxis = Quatvec(cos(angle), mulpt3(axis, sin(angle)));
+	θ /= 2;
+	qaxis = Quatvec(cos(θ), mulpt3(axis, sin(θ)));
 	qr = mulq(mulq(qaxis, Quatvec(0, p)), invq(qaxis));
-	return Vec3(qr.i, qr.j, qr.k);
+	return Pt3(qr.i, qr.j, qr.k, p.w);
 }
