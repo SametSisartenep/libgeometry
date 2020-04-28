@@ -46,9 +46,9 @@ lerp2(Point2 a, Point2 b, double t)
 	if(t < 0) t = 0;
 	if(t > 1) t = 1;
 	return Pt2(
-		(1 - t)*a.x + t*b.x,
-		(1 - t)*a.y + t*b.y,
-		(1 - t)*a.w + t*b.w
+		flerp(a.x, b.x, t),
+		flerp(a.y, b.y, t),
+		flerp(a.w, b.w, t)
 	);
 }
 
@@ -119,10 +119,10 @@ lerp3(Point3 a, Point3 b, double t)
 	if(t < 0) t = 0;
 	if(t > 1) t = 1;
 	return Pt3(
-		(1 - t)*a.x + t*b.x,
-		(1 - t)*a.y + t*b.y,
-		(1 - t)*a.z + t*b.z,
-		(1 - t)*a.w + t*b.w
+		flerp(a.x, b.x, t),
+		flerp(a.y, b.y, t),
+		flerp(a.z, b.z, t),
+		flerp(a.w, b.w, t)
 	);
 }
 

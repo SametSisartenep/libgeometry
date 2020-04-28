@@ -35,6 +35,9 @@ struct Triangle3 {
 	Point3 p0, p1, p2;
 };
 
+/* utils */
+double flerp(double, double, double);
+
 /* Point2 */
 Point2 Pt2(double, double, double);
 Point2 Vec2(double, double);
@@ -108,3 +111,10 @@ Point3 invrframexform3(Point3, RFrame3);
 
 /* Triangle3 */
 Point3 centroid(Triangle3);
+
+/* Fmt */
+#pragma varargck type "v" Point2
+#pragma varargck type "V" Point3
+int vfmt(Fmt*);
+int Vfmt(Fmt*);
+void GEOMfmtinstall(void);

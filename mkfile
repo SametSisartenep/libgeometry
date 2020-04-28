@@ -7,6 +7,8 @@ OFILES=\
 	quaternion.$O\
 	rframe.$O\
 	triangle.$O\
+	utils.$O\
+	fmt.$O\
 
 HFILES=geometry.h
 
