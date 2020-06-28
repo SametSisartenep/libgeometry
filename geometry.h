@@ -37,6 +37,7 @@ struct Triangle3 {
 
 /* utils */
 double flerp(double, double, double);
+double fclamp(double, double, double);
 
 /* Point2 */
 Point2 Pt2(double, double, double);

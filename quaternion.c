@@ -85,6 +85,6 @@ qrotate(Point3 p, Point3 axis, double θ)
 
 	θ /= 2;
 	qaxis = Quatvec(cos(θ), mulpt3(axis, sin(θ)));
-	qr = mulq(mulq(qaxis, Quatvec(0, p)), invq(qaxis));
+	qr = mulq(mulq(qaxis, Quatvec(0, p)), invq(qaxis)); /* qpq⁻¹ */
 	return Pt3(qr.i, qr.j, qr.k, p.w);
 }
