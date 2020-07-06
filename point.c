@@ -75,6 +75,42 @@ normvec2(Point2 v)
 	return Pt2(v.x/len, v.y/len, 0);
 }
 
+/*
+ * the edge function, from:
+ *
+ * Juan Pineda, A Parallel Algorithm for Polygon Rasterization,
+ * Computer Graphics, Vol. 22, No. 8, August 1988
+ */
+int
+edgeptcmp(Point2 e0, Point2 e1, Point2 p)
+{
+	Point3 e0p, e01, r;
+
+	p = subpt2(p, e0);
+	e1 = subpt2(e1, e0);
+	e0p = Vec3(p.x,p.y,0);
+	e01 = Vec3(e1.x,e1.y,0);
+	r = crossvec3(e0p, e01);
+
+	/* clamp to avoid overflow */
+	return fclamp(r.z, -1, 1); /* e0.x*e1.y - e0.y*e1.x */
+}
+
+/*
+ * algorithm by W. Randolph Franklin
+ */
+int
+ptinpoly(Point2 p, Point2 *pts, ulong npts)
+{
+	int i, j, c;
+
+	for(i = c = 0, j = npts-1; i < npts; j = i++)
+		if(p.y < pts[i].y != p.y < pts[j].y &&
+			p.x < (pts[j].x - pts[i].x) * (p.y - pts[i].y)/(pts[j].y - pts[i].y) + pts[i].x)
+		c ^= 1;
+	return c;
+}
+
 /* 3D */
 
 Point3

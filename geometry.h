@@ -7,6 +7,7 @@ typedef double Matrix3[4][4];
 typedef struct Quaternion Quaternion;
 typedef struct RFrame RFrame;
 typedef struct RFrame3 RFrame3;
+typedef struct Triangle2 Triangle2;
 typedef struct Triangle3 Triangle3;
 
 struct Point2 {
@@ -29,6 +30,11 @@ struct RFrame {
 struct RFrame3 {
 	Point3 p;
 	Point3 bx, by, bz;
+};
+
+struct Triangle2
+{
+	Point2 p0, p1, p2;
 };
 
 struct Triangle3 {
