@@ -43,8 +43,7 @@ divpt2(Point2 p, double s)
 Point2
 lerp2(Point2 a, Point2 b, double t)
 {
-	if(t < 0) t = 0;
-	if(t > 1) t = 1;
+	t = fclamp(t, 0, 1);
 	return Pt2(
 		flerp(a.x, b.x, t),
 		flerp(a.y, b.y, t),
@@ -78,7 +77,7 @@ normvec2(Point2 v)
 /*
  * the edge function, from:
  *
- * Juan Pineda, A Parallel Algorithm for Polygon Rasterization,
+ * Juan Pineda, “A Parallel Algorithm for Polygon Rasterization”,
  * Computer Graphics, Vol. 22, No. 8, August 1988
  */
 int
@@ -97,7 +96,7 @@ edgeptcmp(Point2 e0, Point2 e1, Point2 p)
 }
 
 /*
- * algorithm by W. Randolph Franklin
+ * (PNPOLY) algorithm by W. Randolph Franklin
  */
 int
 ptinpoly(Point2 p, Point2 *pts, ulong npts)
@@ -152,8 +151,7 @@ divpt3(Point3 p, double s)
 Point3
 lerp3(Point3 a, Point3 b, double t)
 {
-	if(t < 0) t = 0;
-	if(t > 1) t = 1;
+	t = fclamp(t, 0, 1);
 	return Pt3(
 		flerp(a.x, b.x, t),
 		flerp(a.y, b.y, t),

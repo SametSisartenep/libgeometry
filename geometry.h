@@ -56,6 +56,7 @@ Point2 lerp2(Point2, Point2, double);
 double dotvec2(Point2, Point2);
 double vec2len(Point2);
 Point2 normvec2(Point2);
+int ptinpoly(Point2, Point2*, ulong);
 
 /* Point3 */
 Point3 Pt3(double, double, double, double);
@@ -108,6 +109,7 @@ double dotq(Quaternion, Quaternion);
 Quaternion invq(Quaternion);
 double qlen(Quaternion);
 Quaternion normq(Quaternion);
+Quaternion slerp(Quaternion, Quaternion, double);
 Point3 qrotate(Point3, Point3, double);
 
 /* RFrame */

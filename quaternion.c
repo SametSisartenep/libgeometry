@@ -78,6 +78,24 @@ normq(Quaternion q)
 	return sdivq(q, qlen(q));
 }
 
+/*
+ * based on the implementation from:
+ *
+ * Jonathan Blow, “Understanding Slerp, Then Not Using it”,
+ * The Inner Product, April 2004.
+ */
+Quaternion
+slerp(Quaternion q, Quaternion r, double t)
+{
+	Quaternion v;
+	double θ, q·r;
+
+	q·r = fclamp(dotq(q, r), -1, 1); /* stay within the domain of acos(2) */
+	θ = acos(q·r)*t;
+	v = normq(subq(r, smulq(q, q·r))); /* v = r - (q·r)q / |v| */
+	return addq(smulq(q, cos(θ)), smulq(v, sin(θ))); /* q cos(θ) + v sin(θ) */
+}
+
 Point3
 qrotate(Point3 p, Point3 axis, double θ)
 {
