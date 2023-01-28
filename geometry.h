@@ -56,6 +56,7 @@ Point2 lerp2(Point2, Point2, double);
 double dotvec2(Point2, Point2);
 double vec2len(Point2);
 Point2 normvec2(Point2);
+int edgeptcmp(Point2, Point2, Point2);
 int ptinpoly(Point2, Point2*, ulong);
 
 /* Point3 */
@@ -118,8 +119,12 @@ Point3 rframexform3(Point3, RFrame3);
 Point2 invrframexform(Point2, RFrame);
 Point3 invrframexform3(Point3, RFrame3);
 
+/* Triangle2 */
+Point2 centroid(Triangle2);
+Point3 barycoords(Triangle2, Point2);
+
 /* Triangle3 */
-Point3 centroid(Triangle3);
+Point3 centroid3(Triangle3);
 
 /* Fmt */
 #pragma varargck type "v" Point2

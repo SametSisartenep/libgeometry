@@ -79,6 +79,11 @@ normvec2(Point2 v)
  *
  * Juan Pineda, “A Parallel Algorithm for Polygon Rasterization”,
  * Computer Graphics, Vol. 22, No. 8, August 1988
+ *
+ * comparison of a point p with an edge [e0 e1]
+ * p to the right: +
+ * p to the left: -
+ * p on the edge: 0
  */
 int
 edgeptcmp(Point2 e0, Point2 e1, Point2 p)
